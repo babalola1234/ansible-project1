@@ -1,0 +1,15 @@
+# This is a demo playbook to install ftp pack on managed nodes 
+---
+- name: play1
+  hosts: all
+  tasks:
+  - name: install ftp vsftpd
+    ansible.builtin.apt
+    name: vsftpd
+    state: latest
+ 
+  - name: Ensure vsftpd is running
+      ansible.builtin.service:
+        name: vsftpd
+        state: started
+        enabled: yes
