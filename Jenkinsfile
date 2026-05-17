@@ -22,22 +22,6 @@ pipeline {
             }
         }
                   
-    post {
-        always {
-            // Archive the Ansible playbook execution logs
-            archiveArtifacts '*.log'
-        }
-        
-        success {
-            // Notify success
-            echo 'Ansible playbook executed successfully!'
-        }
-        
-        failure {
-            // Notify failure
-            echo 'Ansible playbook execution failed!'
-        }
-    }
  }
 
 }
