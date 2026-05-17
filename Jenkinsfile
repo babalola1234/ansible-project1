@@ -16,7 +16,9 @@ pipeline {
                 ansiblePlaybook(
 					credentialsId: 'ansible-ssh', 
 					inventory: './inventories', 
-					playbook: './demo.yaml')
+					playbook: './demo.yaml'
+					
+				)
             }
         }
                   
@@ -36,4 +38,6 @@ pipeline {
             echo 'Ansible playbook execution failed!'
         }
     }
+ }
+
 }
