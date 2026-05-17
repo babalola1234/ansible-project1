@@ -5,20 +5,35 @@ pipeline {
     stages {
         stage('get the code from github') {
             steps {
-				// Checkout your source code repository
+				// Checkout your source code repository from SCM
                 checkout scm
             }
         }
-		stage('check web page') {
+        
+        stage('checkout code and run ansible playbook ') {
             steps {
-				sh 'cat index.html'
-				sh 'man date > date.txt'
+                // Install required packages and dependencies
+                ansiblePlaybook(
+					credentialsId: 'ansible-ssh', 
+					inventory: './inventories', 
+					playbook: './demo.yaml')
             }
         }
-		stage('make redht user') {
-            steps {
-				sh 'sudo useradd redhat'
-            }
+                  
+    post {
+        always {
+            // Archive the Ansible playbook execution logs
+            archiveArtifacts '*.log'
+        }
+        
+        success {
+            // Notify success
+            echo 'Ansible playbook executed successfully!'
+        }
+        
+        failure {
+            // Notify failure
+            echo 'Ansible playbook execution failed!'
         }
     }
 }
