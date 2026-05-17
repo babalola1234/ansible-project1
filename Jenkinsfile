@@ -15,8 +15,8 @@ pipeline {
                 // Install required packages and dependencies
                 ansiblePlaybook(
 					credentialsId: 'ansible-ssh', 
-					inventory: '/root/ansible-project1/inventory', 
-					playbook: '/root/ansible-project1/demo.yaml'
+					inventory: './inventory', 
+					playbook: './demo.yaml'
 					
 				)
             }
