@@ -4,7 +4,7 @@
   hosts: all
   tasks:
    - name: install ftp vsftpd
-     ansible.builtin.apt
+     ansible.builtin.apt:
        name: vsftpd
        state: latest
  
